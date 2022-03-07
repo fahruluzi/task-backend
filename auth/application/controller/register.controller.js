@@ -21,12 +21,12 @@ class RegisterController {
 
         let register = await this.registerService.Register(req.body);
         if (register.code === 406) {
-            res.sendError(null, "Failed Insert Database!", register.code);
+            return res.sendError(null, "Failed Insert Database!", register.code);
         } else if (register.code === 400) {
-            res.sendError(null, "Username was already used!", register.code);
+            return res.sendError(null, "Username was already used!", register.code);
         }
 
-        res.sendSuccess(register.data, "User created!", register.code);
+        return res.sendSuccess(register.data, "User created!", register.code);
     }
 }
 
