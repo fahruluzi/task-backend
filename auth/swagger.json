@@ -1,0 +1,123 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Auth App",
+    "version": "1.0.0",
+    "description": "This is a API Specs for Auth App made with Express and documented with Swagger",
+    "contact": {
+      "name": "Fahrul Fauzi",
+      "email": "fahrul.fauzi@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/register" : {
+      "post" : {
+        "summary": "Register User",
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json" : {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterBodyRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json" : {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message" : {
+                      "type": "string",
+                      "example": "User created!"
+                    },
+                    "data" : {
+                      "$ref": "#/components/schemas/RegisterCreatedResponse"
+                    },
+                    "success" : {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  }
+                }
+              }
+            },
+            "description": "User created!"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "name": "Authorization",
+        "scheme": "bearer"
+      }
+    },
+    "schemas": {
+      "RegisterBodyRequest" : {
+        "type" : "object",
+        "properties": {
+          "username" : {
+            "type": "string",
+            "example": "fahruluzi"
+          },
+          "name" : {
+            "type": "string",
+            "example": "Fahrul Fauzi"
+          },
+          "phone" : {
+            "type": "string",
+            "example": "081320243880"
+          },
+          "role" : {
+            "type": "string",
+            "example": "admin"
+          }
+        }
+      },
+      "RegisterCreatedResponse" : {
+        "type" : "object",
+        "properties": {
+          "uuid" : {
+            "type": "string",
+            "example": null
+          },
+          "username" : {
+            "type": "string",
+            "example": "fahruluzi"
+          },
+          "name" : {
+            "type": "string",
+            "example": "Fahrul Fauzi"
+          },
+          "phone" : {
+            "type": "string",
+            "example": "081320243880"
+          },
+          "role" : {
+            "type": "string",
+            "example": "admin"
+          },
+          "password" : {
+            "type": "string",
+            "example": "ZA10"
+          }
+        }
+      }
+    }
+  }
+}
