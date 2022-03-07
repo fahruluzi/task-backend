@@ -8,10 +8,10 @@ module.exports = (req, res, next) => {
         });
     };
 
-    res.sendError = (errors, message = null, status = 400) => {
+    res.sendError = (data, message = null, status = 400) => {
         return res.status(status).send({
             success: false,
-            data: null,
+            data: data,
             message: message ? message : "bad_request",
         });
     };
