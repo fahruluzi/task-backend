@@ -100,13 +100,50 @@
           }
         }
       }
+    },
+    "/profile": {
+      "get": {
+        "summary": "Get Profile User",
+        "security": [
+          {
+            "Bearer" : []
+          }
+        ],
+        "tags": [
+          "Auth"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User created!"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/LoginOKResponse"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  }
+                }
+              }
+            },
+            "description": "User created!"
+          }
+        }
+      }
     }
   },
   "components": {
     "securitySchemes": {
-      "bearerAuth": {
+      "Bearer": {
         "type": "http",
-        "name": "Authorization",
         "scheme": "bearer"
       }
     },
@@ -170,7 +207,7 @@
           },
           "password": {
             "type": "string",
-            "example": "ZA10"
+            "example": "6fUJ"
           }
         }
       },
