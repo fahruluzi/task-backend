@@ -4,6 +4,7 @@ const createError = require("http-errors");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const logger = require("morgan");
 const port = 3000;
 
 // router
@@ -11,6 +12,10 @@ const apiRouter = require("./application/routes");
 
 // middlewares
 const generalMiddleware = require("./middlewares/general");
+
+// database
+const database = require("./lib/database");
+database.connectDB();
 
 const app = express();
 
@@ -21,6 +26,7 @@ app.use(
     })
 );
 
+app.use(logger('dev'));
 app.use(express.json({ limit: "100mb" }));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -32,9 +38,7 @@ const swaggerUi = require('swagger-ui-express');
 const openApiDocumentation = require('./swagger.json');
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(openApiDocumentation));
 
-app.group("/api", (router) => {
-    apiRouter(router);
-});
+apiRouter(app);
 
 // catch 404 and forward to error controller
 app.use(function (req, res, next) {
