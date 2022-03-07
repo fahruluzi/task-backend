@@ -124,3 +124,7 @@ Authorization : Bearer {JWT_Token}
   "success": false
 }
 ```
+
+## Fetch App
+
+### Register
