@@ -1,0 +1,29 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Fetch App",
+    "version": "1.0.0",
+    "description": "This is a API Specs for Fetch App made with Fiber and documented with Swagger",
+    "contact": {
+      "name": "Fahrul Fauzi",
+      "email": "fahrul.fauzi@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:4000"
+    }
+  ],
+  "paths": {
+  },
+  "components": {
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "schemas": {
+    }
+  }
+}
