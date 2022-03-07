@@ -4,12 +4,10 @@ const createError = require("http-errors");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const swaggerJsdoc = require("swagger-jsdoc");
-const swaggerUi = require("swagger-ui-express");
-const port = process.env.API_PORT;
+const port = 3000;
 
 // router
-const apiRouter = require("./routes/api");
+const apiRouter = require("./application/routes");
 
 // middlewares
 const generalMiddleware = require("./middlewares/general");
@@ -30,14 +28,9 @@ app.use(cookieParser());
 app.use(generalMiddleware);
 
 // Swagger Settings
-const swaggerDocument = require(`./swagger.json`);
-const specs = swaggerJsdoc(swaggerDocument);
-
-app.use(
-    "/swagger",
-    swaggerUi.serve,
-    swaggerUi.setup(specs)
-);
+const swaggerUi = require('swagger-ui-express');
+const openApiDocumentation = require('./swagger.json');
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(openApiDocumentation));
 
 app.group("/api", (router) => {
     apiRouter(router);
