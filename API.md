@@ -55,14 +55,15 @@ Documentation API for Microservice Auth app and Fetch app
 > HTTP 200 : Example Response
 ```json
 {
-  "message": "User created!",
+  "message": "User Authenticated!",
   "data": {
-    "uuid": null,
-    "username": "fahruluzi",
-    "name": "Fahrul Fauzi",
-    "phone": "081320243889",
-    "role": "admin",
-    "password": "Jl78"
+    "claims": {
+      "name" : "Fahrul Fauzi",
+      "phone" : "081320243889",
+      "role" : "admin",
+      "authenticated_at" : "1646669672444"
+    },
+    "token" : "ey.."
   },
   "success" : true
 }
@@ -95,8 +96,9 @@ Authorization : Bearer {JWT_Token}
   "data": {
     "claims": {
       "name" : "Fahrul Fauzi",
-      "phone" : "admin",
-      "authenticated_at" : "1970-01-01 00:00:01"
+      "phone" : "081320243889",
+      "role" : "admin",
+      "authenticated_at" : "1646669672444"
     },
     "token" : "ey.."
   },

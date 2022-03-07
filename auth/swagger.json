@@ -15,8 +15,8 @@
     }
   ],
   "paths": {
-    "/register" : {
-      "post" : {
+    "/register": {
+      "post": {
         "summary": "Register User",
         "tags": [
           "Auth"
@@ -24,7 +24,7 @@
         "requestBody": {
           "required": true,
           "content": {
-            "application/json" : {
+            "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/RegisterBodyRequest"
               }
@@ -34,18 +34,61 @@
         "responses": {
           "200": {
             "content": {
-              "application/json" : {
+              "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "message" : {
+                    "message": {
                       "type": "string",
                       "example": "User created!"
                     },
-                    "data" : {
+                    "data": {
                       "$ref": "#/components/schemas/RegisterCreatedResponse"
                     },
-                    "success" : {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  }
+                }
+              }
+            },
+            "description": "User created!"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "summary": "Login User",
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginBodyRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User created!"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/LoginOKResponse"
+                    },
+                    "success": {
                       "type": "boolean",
                       "example": true
                     }
@@ -68,53 +111,100 @@
       }
     },
     "schemas": {
-      "RegisterBodyRequest" : {
-        "type" : "object",
+      "RegisterBodyRequest": {
+        "type": "object",
         "properties": {
-          "username" : {
+          "username": {
             "type": "string",
             "example": "fahruluzi"
           },
-          "name" : {
+          "name": {
             "type": "string",
             "example": "Fahrul Fauzi"
           },
-          "phone" : {
+          "phone": {
             "type": "string",
             "example": "081320243880"
           },
-          "role" : {
+          "role": {
             "type": "string",
             "example": "admin"
           }
         }
       },
-      "RegisterCreatedResponse" : {
-        "type" : "object",
+      "RegisterCreatedResponse": {
+        "type": "object",
         "properties": {
-          "uuid" : {
+          "uuid": {
             "type": "string",
             "example": null
           },
-          "username" : {
+          "username": {
             "type": "string",
             "example": "fahruluzi"
           },
-          "name" : {
+          "name": {
             "type": "string",
             "example": "Fahrul Fauzi"
           },
-          "phone" : {
+          "phone": {
             "type": "string",
             "example": "081320243880"
           },
-          "role" : {
+          "role": {
             "type": "string",
             "example": "admin"
           },
-          "password" : {
+          "password": {
             "type": "string",
             "example": "ZA10"
+          }
+        }
+      },
+      "LoginBodyRequest": {
+        "type": "object",
+        "properties": {
+          "phone": {
+            "type": "string",
+            "example": "081320243880"
+          },
+          "password": {
+            "type": "string",
+            "example": "ZA10"
+          }
+        }
+      },
+      "LoginOKResponse": {
+        "type": "object",
+        "properties": {
+          "claims": {
+            "type": "object",
+            "properties": {
+              "username": {
+                "type": "string",
+                "example": "fahruluzi"
+              },
+              "name": {
+                "type": "string",
+                "example": "Fahrul Fauzi"
+              },
+              "phone": {
+                "type": "string",
+                "example": "081320243880"
+              },
+              "role": {
+                "type": "string",
+                "example": "admin"
+              },
+              "authenticated_at": {
+                "type": "string",
+                "example": "1646669672444"
+              }
+            }
+          },
+          "token": {
+            "type": "string",
+            "example": "ey..."
           }
         }
       }
