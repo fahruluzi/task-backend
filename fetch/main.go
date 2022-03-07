@@ -4,7 +4,6 @@ import (
 	"context"
 	"fetch/application"
 	"fmt"
-	"github.com/gofiber/fiber/v2"
 	"log"
 	"runtime"
 )
@@ -31,11 +30,8 @@ func main() {
 		cancel()
 	}()
 
-	// Match any route
-	app.Fiber.Use(func(c *fiber.Ctx) error {
-		fmt.Println("🥇 First handler")
-		return c.Next()
-	})
+	// Serve Swagger
+	app.Fiber.Static("/swagger", "./")
 
 	log.Fatal(app.Fiber.Listen(app.Config.Port))
 
