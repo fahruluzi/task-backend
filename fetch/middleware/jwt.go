@@ -3,6 +3,7 @@ package middleware
 import (
 	"fetch/lib"
 	"github.com/gofiber/fiber/v2"
+	"github.com/golang-jwt/jwt"
 	"net/http"
 	"strings"
 )
@@ -32,6 +33,16 @@ func (middleware *JWTMiddleware) Validate(ctx *fiber.Ctx) (err error) {
 	}
 
 	ctx.Locals("claims", claims)
+	ctx.Next()
+	return nil
+}
+
+func (middleware *JWTMiddleware) IsAdmin(ctx *fiber.Ctx) (err error) {
+	claims := ctx.Locals("claims").(jwt.MapClaims)
+	if claims["role"] != "admin" {
+		return lib.ResponseFormatter(ctx, http.StatusForbidden, "Role not valid to access!", nil, nil)
+	}
+
 	ctx.Next()
 	return nil
 }
