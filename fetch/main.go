@@ -3,7 +3,10 @@ package main
 import (
 	"context"
 	"fetch/application"
+	"fetch/application/controller"
+	"fetch/middleware"
 	"fmt"
+	"github.com/gofiber/fiber/v2/middleware/logger"
 	"log"
 	"runtime"
 )
@@ -30,8 +33,16 @@ func main() {
 		cancel()
 	}()
 
+	app.Fiber.Use(logger.New())
+
 	// Serve Swagger
 	app.Fiber.Static("/swagger", "./")
+
+	jwtMiddleware := middleware.NewJWTMiddleware(app.Config.JWTSecret)
+	app.Fiber.Use(jwtMiddleware.Validate)
+
+	validateController := controller.NewValidateController()
+	app.Fiber.Get("/validate", validateController.Validate)
 
 	log.Fatal(app.Fiber.Listen(app.Config.Port))
 
