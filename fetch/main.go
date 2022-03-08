@@ -47,6 +47,9 @@ func main() {
 	fetchController := controller.NewFetchController()
 	app.Fiber.Get("/fetch", fetchController.Fetch)
 
+	aggregationController := controller.NewAggregationController()
+	app.Fiber.Get("/aggregation", jwtMiddleware.IsAdmin, aggregationController.Aggregation)
+
 	log.Fatal(app.Fiber.Listen(app.Config.Port))
 
 	<-ctx.Done()
