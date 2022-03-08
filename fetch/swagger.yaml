@@ -10,8 +10,47 @@ servers:
   - url: http://localhost:4000
     description: Local
 paths:
+  /validate:
+    get:
+      security:
+        - Bearer : []
+      summary: Validate Authorization
+      tags:
+        - Validate
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginOKResponse'
 components:
+  schemas:
+    LoginOKResponse:
+      type: object
+      properties:
+        claims:
+          type: object
+          properties:
+            username:
+              type: string
+              example: fahruluzi
+            name:
+              type: string
+              example: Fahrul Fauzi
+            phone:
+              type: string
+              example: 081320243880
+            role:
+              type: string
+              example: admin
+            authenticated_at:
+              type: string
+              example: 1646669672444
+        token:
+          type: string
+          example: ey....
   securitySchemes:
-    bearerAuth:
+    Bearer:
       type: http
       scheme: bearer
