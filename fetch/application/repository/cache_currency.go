@@ -9,6 +9,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 	"time"
 )
 
@@ -26,9 +27,9 @@ type (
 
 func NewCacheCurrencyRepository() ICacheCurrencyRepository {
 	return &CacheCurrencyRepository{
-		URL:      "https://free.currconv.com/api/v7/convert?q=IDR_USD&compact=ultra&apiKey=e418d7133e35a3a195e6",
+		URL:      os.Getenv("CURRENCY_URL"),
 		Cache:    cache.New(5*time.Minute, 10*time.Minute),
-		CacheKey: "IDR_USD",
+		CacheKey: os.Getenv("CURRENCY_CACHE_KEY"),
 	}
 }
 

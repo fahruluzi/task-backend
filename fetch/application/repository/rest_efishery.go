@@ -7,6 +7,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"time"
 )
 
@@ -22,7 +23,7 @@ type (
 
 func NewRestEFisheryRepository() *RestEFisheryRepository {
 	return &RestEFisheryRepository{
-		URL: "https://stein.efishery.com/v1/storages/5e1edf521073e315924ceab4/list",
+		URL: os.Getenv("EFISHERY_URL"),
 	}
 }
 

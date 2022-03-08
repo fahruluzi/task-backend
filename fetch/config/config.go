@@ -1,5 +1,9 @@
 package config
 
+import (
+	"os"
+)
+
 type (
 	// Configuration is application configuration
 	Configuration struct {
@@ -13,7 +17,7 @@ type (
 func LoadConfiguration(appName string) *Configuration {
 	return &Configuration{
 		AppName:   appName,
-		JWTSecret: "secret",
-		Port:      ":4000",
+		JWTSecret: os.Getenv("JWT_SECRET"),
+		Port:      ":" + os.Getenv("PORT"),
 	}
 }

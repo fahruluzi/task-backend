@@ -7,12 +7,15 @@ import (
 	"fetch/middleware"
 	"fmt"
 	"github.com/gofiber/fiber/v2/middleware/logger"
+	"github.com/joho/godotenv"
 	"log"
 	"runtime"
 )
 
 func main() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
+
+	godotenv.Load("./.env")
 
 	// create a context
 	ctx, cancel := context.WithCancel(context.Background())
