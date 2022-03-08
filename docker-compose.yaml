@@ -1,0 +1,23 @@
+version: '3.3'
+
+services:
+  auth-app:
+    env_file:
+      - ./auth/.env
+    build:
+      context: ./auth
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./data/:/usr/src/app/data
+  fetch-app:
+    env_file:
+      - ./fetch/.env
+    build:
+      context: ./fetch
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "4000:4000"
