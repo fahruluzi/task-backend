@@ -1,10 +1,1 @@
-[
-  {
-    "username": "fahruluzi",
-    "name": "Fahrul Fauzi",
-    "phone": "081320243880",
-    "role": "admin",
-    "password": "6fUJ",
-    "_id": "cc42cf01551c4226b56545a5b0940438"
-  }
-]
+[{"username":"fahruluzi","name":"Fahrul Fauzi","phone":"081320243880","role":"admin","password":"6fUJ","_id":"cc42cf01551c4226b56545a5b0940438"},{"username":"fahrul","name":"Fahrul Fauzi","phone":"081320243889","role":"user","password":"l1ew","_id":"1f59f7174cbe4e1d8da0dfc92db2bb83"}]
