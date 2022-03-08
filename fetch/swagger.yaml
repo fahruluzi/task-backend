@@ -23,33 +23,217 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LoginOKResponse'
+                type: object
+                properties:
+                  message :
+                    type: string
+                    example: User Authenticated
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/LoginOKResponse'
+        401:
+          description: Invalid Token!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidTokenResponse'
+  /fetch:
+    get:
+      security:
+        - Bearer : []
+      summary: Fetch Data
+      tags:
+        - Resource
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message :
+                    type: string
+                    example: Success Fetch Data
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/FetchOKResponse'
+        401:
+          description: Invalid Token!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidTokenResponse'
+  /aggregation:
+    get:
+      security:
+        - Bearer : []
+      summary: Fetch Data
+      tags:
+        - Resource
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message :
+                    type: string
+                    example: Success Aggregation Data
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/AggregationOKResponse'
+        401:
+          description: Invalid Token!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidTokenResponse'
+        403:
+          description: Invalid Role Auth!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidRoleTokenResponse'
 components:
   schemas:
     LoginOKResponse:
       type: object
       properties:
-        claims:
-          type: object
-          properties:
-            username:
-              type: string
-              example: fahruluzi
-            name:
-              type: string
-              example: Fahrul Fauzi
-            phone:
-              type: string
-              example: 081320243880
-            role:
-              type: string
-              example: admin
-            authenticated_at:
-              type: string
-              example: 1646669672444
-        token:
+        username:
           type: string
-          example: ey....
+          example: fahruluzi
+        name:
+          type: string
+          example: Fahrul Fauzi
+        phone:
+          type: string
+          example: 081320243880
+        role:
+          type: string
+          example: admin
+        authenticated_at:
+          type: string
+          example: 1646669672444
+    FetchOKResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          uuid:
+            type: string
+            example: 383e524e-5d7d-4e2a-93f7-21e0271206ca
+          komoditas:
+            type: string
+            example: Cupang
+          area_provinsi:
+            type: string
+            example: KALIMANTAN TIMUR
+          area_kota:
+            type: string
+            example: BORNEO
+          size:
+            type: string
+            example: 120
+          price:
+            type: string
+            example: 200000
+          price_usd:
+            type: string
+            example: 12.12312
+          tgl_parsed:
+            type: string
+            example: 2022-03-08T19:15:42Z
+          timestamp:
+            type: string
+            example: null
+    AggregationOKResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          year:
+            type: integer
+            example: 2022
+          month:
+            type: integer
+            example: 3
+          week:
+            type: integer
+            example: 2
+          province:
+            type: string
+            example: KALIMANTAN TIMUR
+          commodity:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Cupang
+                size:
+                  type: object
+                  properties:
+                    maximal:
+                      type: integer
+                      example: 12
+                    minimal:
+                      type: integer
+                      example: 1
+                    median:
+                      type: integer
+                      example: 10
+                    average:
+                      type: integer
+                      example: 6
+                price:
+                  type: object
+                  properties:
+                    maximal:
+                      type: integer
+                      example: 12
+                    minimal:
+                      type: integer
+                      example: 1
+                    median:
+                      type: integer
+                      example: 10
+                    average:
+                      type: integer
+                      example: 6
+    InvalidTokenResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Invalid Token!
+        data:
+          type: string
+          example: null
+        success:
+          type: boolean
+          example: false
+    InvalidRoleTokenResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Role not valid to access!
+        data:
+          type: string
+          example: null
+        success:
+          type: boolean
+          example: false
   securitySchemes:
     Bearer:
       type: http
