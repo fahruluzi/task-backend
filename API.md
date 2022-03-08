@@ -241,23 +241,19 @@ Authorization : Bearer {JWT_Token}
       "month": 3,
       "week": 2,
       "province": "KALIMANTAN TIMUR",
-      "commodity" : [
-        {
-          "name" : "Cupang",
-          "size" : {
-            "maximal" : 12,
-            "minimal" : 1,
-            "median" : 10,
-            "average" : 6
-          },
-          "price" : {
-            "maximal" : 12,
-            "minimal" : 1,
-            "median" : 10,
-            "average" : 6
-          }
-        }
-      ]
+      "total_data" : 2,
+      "size" : {
+        "maximal" : 12,
+        "minimal" : 1,
+        "median" : 10,
+        "average" : 6
+      },
+      "price" : {
+        "maximal" : 12,
+        "minimal" : 1,
+        "median" : 10,
+        "average" : 6
+      }
     }
   ],
   "success": true

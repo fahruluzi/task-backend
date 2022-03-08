@@ -13,7 +13,7 @@ paths:
   /validate:
     get:
       security:
-        - Bearer : []
+        - Bearer: [ ]
       summary: Validate Authorization
       tags:
         - Validate
@@ -25,7 +25,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  message :
+                  message:
                     type: string
                     example: User Authenticated
                   success:
@@ -42,7 +42,7 @@ paths:
   /fetch:
     get:
       security:
-        - Bearer : []
+        - Bearer: [ ]
       summary: Fetch Data
       tags:
         - Resource
@@ -54,7 +54,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  message :
+                  message:
                     type: string
                     example: Success Fetch Data
                   success:
@@ -71,7 +71,7 @@ paths:
   /aggregation:
     get:
       security:
-        - Bearer : []
+        - Bearer: [ ]
       summary: Fetch Data
       tags:
         - Resource
@@ -83,7 +83,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  message :
+                  message:
                     type: string
                     example: Success Aggregation Data
                   success:
@@ -172,44 +172,39 @@ components:
           province:
             type: string
             example: KALIMANTAN TIMUR
-          commodity:
-            type: array
-            items:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: Cupang
-                size:
-                  type: object
-                  properties:
-                    maximal:
-                      type: integer
-                      example: 12
-                    minimal:
-                      type: integer
-                      example: 1
-                    median:
-                      type: integer
-                      example: 10
-                    average:
-                      type: integer
-                      example: 6
-                price:
-                  type: object
-                  properties:
-                    maximal:
-                      type: integer
-                      example: 12
-                    minimal:
-                      type: integer
-                      example: 1
-                    median:
-                      type: integer
-                      example: 10
-                    average:
-                      type: integer
-                      example: 6
+          total_data:
+            type: integer
+            example: 2
+          size:
+            type: object
+            properties:
+              maximal:
+                type: integer
+                example: 12
+              minimal:
+                type: integer
+                example: 1
+              median:
+                type: integer
+                example: 10
+              average:
+                type: integer
+                example: 6
+          price:
+            type: object
+            properties:
+              maximal:
+                type: integer
+                example: 12
+              minimal:
+                type: integer
+                example: 1
+              median:
+                type: integer
+                example: 10
+              average:
+                type: integer
+                example: 6
     InvalidTokenResponse:
       type: object
       properties:
