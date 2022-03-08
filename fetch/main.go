@@ -44,6 +44,9 @@ func main() {
 	validateController := controller.NewValidateController()
 	app.Fiber.Get("/validate", validateController.Validate)
 
+	fetchController := controller.NewFetchController()
+	app.Fiber.Get("/fetch", fetchController.Fetch)
+
 	log.Fatal(app.Fiber.Listen(app.Config.Port))
 
 	<-ctx.Done()
