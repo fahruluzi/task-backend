@@ -7,6 +7,8 @@ info:
     name: Fahrul Fauzi
     email: fahrul.fauz@gmail.com
 servers:
+  - url: http://107.155.65.10:4000
+    description: Server
   - url: http://localhost:4000
     description: Local
 paths:
