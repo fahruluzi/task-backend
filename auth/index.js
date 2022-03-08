@@ -1,11 +1,12 @@
 require("express-group-routes");
+require("dotenv").config();
 
 const createError = require("http-errors");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const logger = require("morgan");
-const port = 3000;
+const port = process.env.PORT;
 
 // router
 const apiRouter = require("./application/routes");
@@ -27,8 +28,8 @@ app.use(
 );
 
 app.use(logger('dev'));
-app.use(express.json({ limit: "100mb" }));
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json({limit: "100mb"}));
+app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 
 app.use(generalMiddleware);

@@ -9,7 +9,7 @@ module.exports = async (req, res, next) => {
 
     const token = req.headers["authorization"].split(" ")
     try {
-        let decoded = jwt.verify(token[1], "secret")
+        let decoded = jwt.verify(token[1], process.env.JWT_SECRET)
 
         req.user = decoded
         return next() // use next to go next router

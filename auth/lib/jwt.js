@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 class JWTLibrary {
     constructor() {
-        this.secret = "secret";
+        this.secret = process.env.JWT_SECRET;
 
         this.GenerateToken = this.GenerateToken.bind(this);
         this.VerifyToken = this.VerifyToken.bind(this);
