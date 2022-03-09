@@ -34,3 +34,10 @@ Service Golang dan Node JS, auth app dan fetch app.
 ## Documentation
 
 [Markdown Documentation](https://github.com/fahruluzi/task-backend/blob/master/API.md)
+
+### Context
+![Logo](https://raw.githubusercontent.com/fahruluzi/task-backend/master/docs/context-c4.png)
+
+
+### Deployment
+![Logo](https://raw.githubusercontent.com/fahruluzi/task-backend/master/docs/deployment-c4.png)
