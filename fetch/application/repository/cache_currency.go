@@ -4,13 +4,14 @@ import (
 	"crypto/tls"
 	"encoding/json"
 	"fetch/application/model"
-	"github.com/gofiber/fiber/v2"
-	"github.com/patrickmn/go-cache"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
 	"time"
+
+	"github.com/gofiber/fiber/v2"
+	"github.com/patrickmn/go-cache"
 )
 
 type (
@@ -37,7 +38,7 @@ func (repository *CacheCurrencyRepository) ConvertIDRToUSD() (model model.RestCu
 	// Get on cache
 	dataCache, found := repository.Cache.Get(repository.CacheKey)
 	if found {
-		model.IDRToUSD = dataCache.(float64)
+		model.Data.USD.Value = dataCache.(float64)
 		return model, nil
 	}
 
@@ -47,7 +48,7 @@ func (repository *CacheCurrencyRepository) ConvertIDRToUSD() (model model.RestCu
 		return model, err
 	}
 	log.Println("REST DATA CURRENCY")
-	repository.Cache.Set(repository.CacheKey, model.IDRToUSD, cache.DefaultExpiration)
+	repository.Cache.Set(repository.CacheKey, model.Data.USD.Value, cache.DefaultExpiration)
 	return model, nil
 }
 

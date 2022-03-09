@@ -48,7 +48,7 @@ func (service *FetchService) FetchDataAndAddUSDCurrency() (response []model.Fetc
 			City:        value.City,
 			Size:        value.Size,
 			Price:       value.Price,
-			PriceUSD:    idrToUsdCurrency.IDRToUSD * float64(priceIDR),
+			PriceUSD:    idrToUsdCurrency.Data.USD.Value * float64(priceIDR),
 			TimeParsing: value.TimeParsing,
 			Timestamp:   value.Timestamp,
 		})
